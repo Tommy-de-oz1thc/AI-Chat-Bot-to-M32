@@ -1,0 +1,3 @@
+#HaptekSDK Version= 1.0 HapType= command FileType= text
+\load	[file= data\standard\StandardScene.hap]
+
