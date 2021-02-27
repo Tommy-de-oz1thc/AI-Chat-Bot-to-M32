@@ -41,6 +41,11 @@
             this.txtCall = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labelText = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboWPM = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtChat
@@ -127,7 +132,7 @@
             this.txtCall.Name = "txtCall";
             this.txtCall.Size = new System.Drawing.Size(103, 20);
             this.txtCall.TabIndex = 16;
-            this.txtCall.Text = "Username";
+            this.txtCall.Text = "OZ1THC";
             this.txtCall.TextChanged += new System.EventHandler(this.txtCall_TextChanged);
             // 
             // label2
@@ -142,20 +147,90 @@
             // labelText
             // 
             this.labelText.AutoSize = true;
-            this.labelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelText.Location = new System.Drawing.Point(368, 235);
+            this.labelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelText.Location = new System.Drawing.Point(381, 264);
             this.labelText.Name = "labelText";
-            this.labelText.Size = new System.Drawing.Size(137, 200);
+            this.labelText.Size = new System.Drawing.Size(99, 160);
             this.labelText.TabIndex = 18;
             this.labelText.Text = "You can\r\nstart with\r\nsending \r\ntext at the \r\nM32 now!\r\n<kn> end\r\n(6 .) del word\r\n" +
     "de oz1thc";
             this.labelText.Visible = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(330, 3);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(48, 17);
+            this.checkBox1.TabIndex = 19;
+            this.checkBox1.Text = "Hide";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(330, 115);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(48, 17);
+            this.checkBox2.TabIndex = 20;
+            this.checkBox2.Text = "Hide";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(330, 215);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(48, 17);
+            this.checkBox3.TabIndex = 21;
+            this.checkBox3.Text = "Hide";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(409, 218);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "WPM";
+            // 
+            // comboWPM
+            // 
+            this.comboWPM.FormattingEnabled = true;
+            this.comboWPM.Items.AddRange(new object[] {
+            "10",
+            "12",
+            "15",
+            "18",
+            "20",
+            "22",
+            "25",
+            "28",
+            "30",
+            "32",
+            "35",
+            "38",
+            "40"});
+            this.comboWPM.Location = new System.Drawing.Point(412, 234);
+            this.comboWPM.Name = "comboWPM";
+            this.comboWPM.Size = new System.Drawing.Size(63, 21);
+            this.comboWPM.TabIndex = 23;
+            this.comboWPM.Text = "12";
             // 
             // Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 450);
+            this.Controls.Add(this.comboWPM);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.labelText);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtCall);
@@ -190,6 +265,11 @@
         private System.Windows.Forms.TextBox txtCall;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelText;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboWPM;
     }
 }
 

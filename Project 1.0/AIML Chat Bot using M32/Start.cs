@@ -30,6 +30,7 @@ namespace AIML_Chat_Bot_using_M32
         private UpdateStatusDelegate updateStatusDelegate = null;
         private Thread workerThread = null;
         private string call;
+        private MorseGen.MorseGenerator M_Gen = new MorseGen.MorseGenerator();
         public Start()
         {
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace AIML_Chat_Bot_using_M32
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
+            try { port.Close(); } catch { }
             Application.Exit();
             
         }
@@ -65,6 +67,7 @@ namespace AIML_Chat_Bot_using_M32
             AI.isAcceptingUserInput = true;
             Request r = new Request(txtChat.Text, myuser, AI);
             Result res = AI.Chat(r);
+            M_Gen.PlayMorse(res.Output,Convert.ToInt32(comboWPM.Text));
             txtBot.Text = "M32: " + res.Output;
             txtChat.Text = txtChat.Text.Replace("<kn>", "");
             txtFinish.Text = "M32: " + res.Output + "\r\n" + call + ": " + txtChat.Text + "\r\n" +  txtFinish.Text;
@@ -143,6 +146,27 @@ namespace AIML_Chat_Bot_using_M32
             call = txtCall.Text;
         }
 
+        private void checkBox1_CheckStateChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked == true)
+            { txtChat.Visible = false; }
+            else { txtChat.Visible = true; }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked == true)
+            { txtBot.Visible = false; }
+            else { txtBot.Visible = true; }
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked == true)
+            { txtFinish.Visible = false; }
+            else { txtFinish.Visible = true; }
+        }
+
         private void Fill_ComPort()
         {
 
@@ -172,6 +196,7 @@ namespace AIML_Chat_Bot_using_M32
                 {
                     w = m32.Read_Word_from_M32(comPort);
                     w.TrimStart();
+                    
                     cw_Text = "";
                     if (w == "*")
                     {
