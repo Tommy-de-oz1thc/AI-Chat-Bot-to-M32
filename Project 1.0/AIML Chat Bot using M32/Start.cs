@@ -34,21 +34,23 @@ namespace AIML_Chat_Bot_using_M32
         public Start()
         {
             InitializeComponent();
-          
+
         }
 
-        
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            try { port.Close(); } catch { }
+            try { 
+                if(comPort.IsOpen)
+                port.Close(); } catch { }
             Application.Exit();
-            
+
         }
 
         private void btnSvar_Click(object sender, EventArgs e)
@@ -67,17 +69,17 @@ namespace AIML_Chat_Bot_using_M32
             AI.isAcceptingUserInput = true;
             Request r = new Request(txtChat.Text, myuser, AI);
             Result res = AI.Chat(r);
-            M_Gen.PlayMorse(res.Output,Convert.ToInt32(comboWPM.Text));
+            M_Gen.PlayMorse(res.Output, Convert.ToInt32(comboWPM.Text));
             txtBot.Text = "M32: " + res.Output;
             txtChat.Text = txtChat.Text.Replace("<kn>", "");
-            txtFinish.Text = "M32: " + res.Output + "\r\n" + call + ": " + txtChat.Text + "\r\n" +  txtFinish.Text;
-            
+            txtFinish.Text = "M32: " + res.Output + "\r\n" + call + ": " + txtChat.Text + "\r\n" + txtFinish.Text;
+
         }
 
 
         private void txtChat_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnCheckPorts_Click(object sender, System.EventArgs e)
@@ -111,7 +113,7 @@ namespace AIML_Chat_Bot_using_M32
                 btnDisConnect.Visible = true;
                 workerThread.Start();
                 labelText.Visible = true;
-               
+
             }
             catch { }
         }
@@ -148,7 +150,7 @@ namespace AIML_Chat_Bot_using_M32
 
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked == true)
+            if (checkBox1.Checked == true)
             { txtChat.Visible = false; }
             else { txtChat.Visible = true; }
         }
@@ -178,9 +180,9 @@ namespace AIML_Chat_Bot_using_M32
             btnConnect.Visible = true;
         }
 
-        
 
-       
+
+
 
 
         private void Morserino_Receive()
@@ -196,7 +198,7 @@ namespace AIML_Chat_Bot_using_M32
                 {
                     w = m32.Read_Word_from_M32(comPort);
                     w.TrimStart();
-                    
+
                     cw_Text = "";
                     if (w == "*")
                     {
@@ -230,7 +232,7 @@ namespace AIML_Chat_Bot_using_M32
                 }
 
                 catch { }
-               if (w.Contains("<kn>"))
+                if (w.Contains("<kn>"))
                 {
 
                     try
@@ -248,19 +250,19 @@ namespace AIML_Chat_Bot_using_M32
                         s = s.ToLower().Trim();
                         cw_Text = s;
                         text_Words.Clear();
-                      
+
                         text_Words.Add(sa);
                         totalPhrases++;
                         s = "";
                         w = "";
-                       
+
 
                     }
                     catch
                     {
                         string v = "";
                     }
-                
+
                 }
 
 
@@ -275,7 +277,7 @@ namespace AIML_Chat_Bot_using_M32
                     this.Invoke(this.updateStatusDelegate);
 
                 }
-                
+
 
 
 
@@ -294,7 +296,7 @@ namespace AIML_Chat_Bot_using_M32
             string C = cw_Text;
             if (C.Contains("<kn>"))
             {
-                txtChat.Text = C.Replace("<kn>","");
+                txtChat.Text = C.Replace("<kn>", "");
                 Bot_Answer();
             }
             else
@@ -302,7 +304,7 @@ namespace AIML_Chat_Bot_using_M32
                 txtChat.Text = t.TrimStart();
             }
 
-            
+
 
 
         }
