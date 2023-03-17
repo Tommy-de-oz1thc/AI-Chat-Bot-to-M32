@@ -49,6 +49,7 @@ namespace AIML_Chat_Bot_using_M32
             try { 
                 if(comPort.IsOpen)
                 port.Close(); } catch { }
+                finally{comport.Dispose();}
             Application.Exit();
 
         }
