@@ -44,16 +44,7 @@ namespace AIML_Chat_Bot_using_M32
 
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            try { 
-                if(comPort.IsOpen)
-                port.Close(); } catch { }
-                finally{comport.Dispose();}
-            Application.Exit();
-
-        }
-
+        
         private void btnSvar_Click(object sender, EventArgs e)
         {
             Bot_Answer();
@@ -70,7 +61,7 @@ namespace AIML_Chat_Bot_using_M32
             AI.isAcceptingUserInput = true;
             Request r = new Request(txtChat.Text, myuser, AI);
             Result res = AI.Chat(r);
-            M_Gen.PlayMorse(res.Output, Convert.ToInt32(comboWPM.Text));
+            M_Gen.PlayMorse(res.Output, Convert.ToInt32(comboWPM.Text), Convert.ToInt32(comboLetter.Text), Convert.ToInt32(comboWord.Text));
             txtBot.Text = "M32: " + res.Output;
             txtChat.Text = txtChat.Text.Replace("<kn>", "");
             txtFinish.Text = "M32: " + res.Output + "\r\n" + call + ": " + txtChat.Text + "\r\n" + txtFinish.Text;
@@ -168,6 +159,32 @@ namespace AIML_Chat_Bot_using_M32
             if (checkBox3.Checked == true)
             { txtFinish.Visible = false; }
             else { txtFinish.Visible = true; }
+        }
+
+        private void Start_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (comPort.IsOpen)
+                    port.Close();
+            }
+            catch { }
+            finally
+            {
+                comPort.Dispose();
+                if (workerThread != null && workerThread.IsAlive)
+                {
+                    workerThread.Abort();
+                }
+
+                if (updateStatusDelegate != null)
+                {
+                    updateStatusDelegate = null;
+                }
+
+               
+            }
+            Application.Exit();
         }
 
         private void Fill_ComPort()
